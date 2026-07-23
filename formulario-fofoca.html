@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fofoca Oficial 💌</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --pink-bg: #fff0f6;
+      --pink-soft: #ffd6e8;
+      --pink-hot: #ff4fa3;
+      --berry: #c6197d;
+      --purple: #b983ff;
+      --plum: #3a0c2c;
+      --cream: #fffaf7;
+      --shadow: 0 10px 0 rgba(198, 25, 125, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Quicksand', sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, #ffe3f0 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, #e9d6ff 0%, transparent 45%),
+        var(--pink-bg);
+      color: var(--plum);
+      padding: 24px 14px 60px;
+      overflow-x: hidden;
+    }
+
+    /* floating hearts background */
+    .float {
+      position: fixed;
+      top: 100%;
+      font-size: 22px;
+      opacity: 0.55;
+      animation: rise linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-115vh) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    .wrap {
+      max-width: 520px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .stamp {
+      display: inline-block;
+      background: var(--pink-hot);
+      color: white;
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      transform: rotate(-4deg);
+      box-shadow: 0 4px 0 var(--berry);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 800;
+      font-size: 2.1rem;
+      margin: 0 0 6px;
+      color: var(--berry);
+      line-height: 1.15;
+    }
+
+    header p {
+      margin: 0;
+      font-weight: 600;
+      color: #8a3b68;
+      font-size: 0.98rem;
+    }
+
+    form {
+      background: var(--cream);
+      border-radius: 26px;
+      padding: 26px 20px 30px;
+      box-shadow: var(--shadow), 0 2px 24px rgba(198, 25, 125, 0.08);
+      border: 3px dashed var(--pink-soft);
+      position: relative;
+    }
+
+    /* washi tape corners */
+    form::before,
+    form::after {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 26px;
+      background: var(--purple);
+      opacity: 0.55;
+      top: -14px;
+    }
+
+    form::before {
+      left: 20px;
+      transform: rotate(-8deg);
+    }
+
+    form::after {
+      right: 20px;
+      transform: rotate(7deg);
+      background: var(--pink-hot);
+    }
+
+    .field {
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .field label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--berry);
+      margin-bottom: 7px;
+    }
+
+    .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 26px;
+      background: var(--pink-hot);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.78rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 2px solid var(--pink-soft);
+      background: #fff;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--plum);
+      outline: none;
+      transition: border-color .2s, transform .2s;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--pink-hot);
+      transform: scale(1.015);
+    }
+
+    input::placeholder {
+      color: #d19dbc;
+      font-weight: 500;
+    }
+
+    .radio-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .radio-row label {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      background: #fff;
+      border: 2px solid var(--pink-soft);
+      padding: 9px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--plum);
+      margin: 0;
+      transition: all .18s;
+    }
+
+    .radio-row input {
+      display: none;
+      width: auto;
+    }
+
+    .radio-row input:checked+span {
+      color: white;
+    }
+
+    .radio-row label:has(input:checked) {
+      background: var(--pink-hot);
+      border-color: var(--pink-hot);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 16px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--pink-hot), var(--purple));
+      color: white;
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 6px 0 var(--berry);
+      transition: transform .12s, box-shadow .12s;
+    }
+
+    button:active {
+      transform: translateY(6px);
+      box-shadow: 0 0 0 var(--berry);
+    }
+
+    .hint {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #a3577f;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 0.8rem;
+      color: #b57c9c;
+      font-weight: 600;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .float {
+        animation: none;
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <header>
+      <div class="stamp">✨ questionário oficial ✨</div>
+      <h1>Me conta tudo, fofa 💌</h1>
+      <p>Preenche com sinceridade e manda de volta no zap 🙈💕</p>
+    </header>
+
+    <form id="quizForm">
+      <div class="field"><label><span class="num">1</span>Nome 😍</label>
+        <input type="text" id="nome" placeholder="Como te chamas?" required>
+      </div>
+
+      <div class="field"><label><span class="num">2</span>Idade 💪❤️‍🩹</label>
+        <input type="number" id="idade" placeholder="Ex: 21" required>
+      </div>
+
+      <div class="field"><label><span class="num">3</span>Tatuagem 🙄☺️</label>
+        <input type="text" id="tatuagem" placeholder="Quantas? Ou nenhuma">
+      </div>
+
+      <div class="field"><label><span class="num">4</span>Filhos 👶</label>
+        <input type="text" id="filhos" placeholder="Quantos?">
+      </div>
+
+      <div class="field"><label><span class="num">5</span>Estado civil 💍💔</label>
+        <div class="radio-row">
+          <label><input type="radio" name="estado" value="Solteira"><span>Solteira</span></label>
+          <label><input type="radio" name="estado" value="Namorando"><span>Namorando</span></label>
+          <label><input type="radio" name="estado" value="Casada"><span>Casada</span></label>
+          <label><input type="radio" name="estado" value="Complicado"><span>É complicado 🙈</span></label>
+        </div>
+      </div>
+
+      <div class="field"><label><span class="num">6</span>Profissão 🤣</label>
+        <input type="text" id="profissao" placeholder="O que fazes da vida?">
+      </div>
+
+      <div class="field"><label><span class="num">7</span>Salário 🙈😂</label>
+        <input type="text" id="salario" placeholder="Não precisa ser exato 😏">
+      </div>
+
+      <div class="field"><label><span class="num">8</span>Cirurgia</label>
+        <input type="text" id="cirurgia" placeholder="Qual? Ou nenhuma">
+      </div>
+
+      <div class="field"><label><span class="num">9</span>Ossos quebrados 😍</label>
+        <input type="text" id="ossos" placeholder="Quantos? Ou nenhum">
+      </div>
+
+      <div class="field"><label><span class="num">10</span>Coração partido ❤️‍🩹😘</label>
+        <div class="radio-row">
+          <label><input type="radio" name="coracao" value="Sim"><span>Sim</span></label>
+          <label><input type="radio" name="coracao" value="Não"><span>Não</span></label>
+        </div>
+      </div>
+
+      <div class="field"><label><span class="num">11</span>Animal preferido 🤗</label>
+        <input type="text" id="animal" placeholder="Qual bichinho?">
+      </div>
+
+      <div class="field"><label><span class="num">12</span>Lugar preferido 🩷</label>
+        <input type="text" id="lugar" placeholder="Onde te sentes bem?">
+      </div>
+
+      <div class="field"><label><span class="num">13</span>Acidente de moto 😒</label>
+        <input type="text" id="acid_moto" placeholder="Quantas vezes?">
+      </div>
+
+      <div class="field"><label><span class="num">14</span>Acidente de carro</label>
+        <input type="text" id="acid_carro" placeholder="Quantas vezes?">
+      </div>
+
+      <div class="field"><label><span class="num">15</span>Carro preferido 💜</label>
+        <input type="text" id="carro" placeholder="Qual carro dos sonhos?">
+      </div>
+
+      <div class="field"><label><span class="num">16</span>Acidente de bicicleta</label>
+        <input type="text" id="acid_bike" placeholder="Quantas vezes?">
+      </div>
+
+      <div class="field"><label><span class="num">17</span>Cor preferida 🩷</label>
+        <input type="text" id="cor" placeholder="Qual cor?">
+      </div>
+
+      <div class="field"><label><span class="num">18</span>Comida 🍗</label>
+        <input type="text" id="comida" placeholder="O que não pode faltar?">
+      </div>
+
+      <div class="field"><label><span class="num">19</span>Bebida 🥂</label>
+        <input type="text" id="bebida" placeholder="Qual bebida?">
+      </div>
+
+      <div class="field"><label><span class="num">20</span>Fruta 🍍</label>
+        <input type="text" id="fruta" placeholder="Fruta preferida">
+      </div>
+
+      <div class="field"><label><span class="num">21</span>Uma data especial</label>
+        <input type="text" id="data" placeholder="Ex: 08/04">
+      </div>
+
+      <div class="field"><label><span class="num">22</span>Dia da semana favorito 🤌🥰</label>
+        <input type="text" id="dia_semana" placeholder="Qual dia?">
+      </div>
+
+      <div class="field"><label><span class="num">23</span>Maior medo 🧠</label>
+        <input type="text" id="medo" placeholder="O que mais te assusta?">
+      </div>
+
+      <div class="field"><label><span class="num">24</span>Pior ano da tua vida</label>
+        <input type="text" id="pior_ano" placeholder="Ex: 2026">
+      </div>
+
+      <div class="field"><label><span class="num">25</span>Vícios 👄📞</label>
+        <input type="text" id="vicios" placeholder="Aquilo que não consegues largar">
+      </div>
+
+      <div class="field"><label><span class="num">26</span>Emoji que te representa 🎭</label>
+        <input type="text" id="emoji" placeholder="Solta um emoji">
+      </div>
+
+      <div class="field"><label><span class="num">27</span>Signo ✨</label>
+        <input type="text" id="signo" placeholder="Qual é o teu signo?">
+      </div>
+
+      <div class="field"><label><span class="num">28</span>Música do momento 🎧</label>
+        <input type="text" id="musica" placeholder="O que anda a tocar no teu telemóvel?">
+      </div>
+
+      <div class="field"><label><span class="num">29</span>Rede social preferida 📱</label>
+        <input type="text" id="rede" placeholder="Instagram? TikTok?">
+      </div>
+
+      <div class="field"><label><span class="num">30</span>Uma frase que te define 💬</label>
+        <input type="text" id="frase" placeholder="Escreve algo icónico">
+      </div>
+
+      <div class="field" style="margin-top:26px; padding-top:18px; border-top:2px dashed var(--pink-soft);">
+        <label><span class="num">📲</span>Número de quem vai receber</label>
+        <input type="tel" id="numeroDestino" placeholder="Ex: 258869276546 (código do país + número)" required>
+      </div>
+
+      <button type="submit">Enviar no WhatsApp 💌</button>
+      <p class="hint">Vai abrir o WhatsApp com tudo prontinho, só precisas apertar enviar 🩷</p>
+    </form>
+
+    <footer>feito com muito 🩷. Thomaz Tech-Vamos-nos conher pouco e se divertir </footer>
+  </div>
+
+  <script>
+    // fundo com coraçõezinhos flutuantes
+    const emojis = ['💗', '🩷', '💕', '✨', '💌'];
+    for (let i = 0; i < 16; i++) {
+      const el = document.createElement('div');
+      el.className = 'float';
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.animationDuration = (8 + Math.random() * 10) + 's';
+      el.style.animationDelay = (Math.random() * 10) + 's';
+      el.style.fontSize = (16 + Math.random() * 18) + 'px';
+      document.body.appendChild(el);
+    }
+
+    document.getElementById('quizForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // número digitado pela pessoa que preenche, limpo de espaços/traços/"+"
+      const numeroWhatsapp = document.getElementById('numeroDestino').value
+        .trim().replace(/[^0-9]/g, '');
+
+      if (!numeroWhatsapp) {
+        alert('Coloca o número de quem vai receber a mensagem 📲');
+        return;
+      }
+
+      const val = id => document.getElementById(id).value.trim() || "—";
+      const radio = name => {
+        const checked = document.querySelector('input[name="' + name + '"]:checked');
+        return checked ? checked.value : "—";
+      };
+
+      const msg =
+        `💌 *Fofoca Oficial* 💌
+
+1️⃣ Nome: ${val('nome')} 😍
+2️⃣ Idade: ${val('idade')} 💪
+3️⃣ Tatuagem: ${val('tatuagem')}
+4️⃣ Filhos: ${val('filhos')}
+5️⃣ Estado civil: ${radio('estado')} 💍
+6️⃣ Profissão: ${val('profissao')}
+7️⃣ Salário: ${val('salario')} 🙈
+8️⃣ Cirurgia: ${val('cirurgia')}
+9️⃣ Ossos quebrados: ${val('ossos')}
+🔟 Coração partido: ${radio('coracao')} ❤️‍🩹
+1️⃣1️⃣ Animal preferido: ${val('animal')}
+1️⃣2️⃣ Lugar preferido: ${val('lugar')} 🩷
+1️⃣3️⃣ Acidente de moto: ${val('acid_moto')}
+1️⃣4️⃣ Acidente de carro: ${val('acid_carro')}
+1️⃣5️⃣ Carro preferido: ${val('carro')} 💜
+1️⃣6️⃣ Acidente de bicicleta: ${val('acid_bike')}
+1️⃣7️⃣ Cor preferida: ${val('cor')} 🩷
+1️⃣8️⃣ Comida: ${val('comida')}
+1️⃣9️⃣ Bebida: ${val('bebida')} 🥂
+2️⃣0️⃣ Fruta: ${val('fruta')} 🍍
+2️⃣1️⃣ Data especial: ${val('data')}
+2️⃣2️⃣ Dia da semana: ${val('dia_semana')} 🤌
+2️⃣3️⃣ Maior medo: ${val('medo')}
+2️⃣4️⃣ Pior ano: ${val('pior_ano')}
+2️⃣5️⃣ Vícios: ${val('vicios')} 👄📞
+2️⃣6️⃣ Emoji: ${val('emoji')}
+2️⃣7️⃣ Signo: ${val('signo')} ✨
+2️⃣8️⃣ Música do momento: ${val('musica')} 🎧
+2️⃣9️⃣ Rede social: ${val('rede')}
+3️⃣0️⃣ Frase que me define: ${val('frase')} 💬`;
+
+      const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    });
+  </script>
+
+</body>
+
+</html>
